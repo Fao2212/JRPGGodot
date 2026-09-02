@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c5tbmwwf51ywn"]
+
+[ext_resource type="Script" uid="uid://cwiq5f5jndsta" path="res://Scripts/Main.cs" id="1_06h2u"]
+[ext_resource type="PackedScene" uid="uid://cmcsvkfqjhs5y" path="res://Character.tscn" id="1_7n7fd"]
+[ext_resource type="Script" uid="uid://yjo5qhv8lgau" path="res://Scripts/Player.cs" id="1_f5nyw"]
+[ext_resource type="PackedScene" uid="uid://b5fij0yeb34h5" path="res://Maps/Battle.tscn" id="2_f5nyw"]
+[ext_resource type="SpriteFrames" uid="uid://cuyr8lmslnt5y" path="res://Sprites/MasterSpriteFrames.tres" id="3_lhrla"]
+
+[node name="Main" type="Node" unique_id=751072021]
+script = ExtResource("1_06h2u")
+BattleScene = ExtResource("2_f5nyw")
+
+[node name="World" type="Node2D" parent="." unique_id=138512029]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="World" unique_id=934309319]
+
+[node name="Player" parent="World" unique_id=1797400425 instance=ExtResource("1_7n7fd")]
+script = ExtResource("1_f5nyw")
+
+[node name="Camera2D" type="Camera2D" parent="World/Player" unique_id=1274289487]
+
+[node name="Master" parent="World" unique_id=1602898904 instance=ExtResource("1_7n7fd")]
+position = Vector2(-208, 0)
+sprite_frames = ExtResource("3_lhrla")
+
+[node name="GUI" type="Control" parent="." unique_id=1200970679]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b5fij0yeb34h5"]
+
+[ext_resource type="Texture2D" uid="uid://df1sjth35w6ir" path="res://icon.png" id="1_82eyv"]
+[ext_resource type="PackedScene" uid="uid://cmcsvkfqjhs5y" path="res://Character.tscn" id="2_spb3e"]
+
+[node name="Node2D" type="Node2D" unique_id=1782348265]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1397468582]
+scale = Vector2(13.208754, 12.372851)
+texture = ExtResource("1_82eyv")
+
+[node name="Elve" parent="." unique_id=1797400425 instance=ExtResource("2_spb3e")]
+position = Vector2(-393.99997, 59.999996)
+scale = Vector2(3.9210672, 3.3227646)
+flip_h = true
+
+[node name="Elve2" parent="." unique_id=830171459 instance=ExtResource("2_spb3e")]
+position = Vector2(392.00003, -185.99998)
+scale = Vector2(4.360004, 3.64)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=402312091]

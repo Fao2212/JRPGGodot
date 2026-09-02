@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cmcsvkfqjhs5y"]
+
+[ext_resource type="SpriteFrames" uid="uid://ce4n8b8tnsc75" path="res://Sprites/ElveSpriteFrames.tres" id="1_7ig0a"]
+[ext_resource type="Script" uid="uid://c8fu6sicxk420" path="res://Scripts/Character.cs" id="2_7ig0a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vprk4"]
+size = Vector2(57, 110)
+
+[node name="Elve" type="AnimatedSprite2D" unique_id=1797400425]
+sprite_frames = ExtResource("1_7ig0a")
+animation = &"Iddle"
+script = ExtResource("2_7ig0a")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2011555587]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=436802597]
+position = Vector2(-1.5, 16)
+shape = SubResource("RectangleShape2D_vprk4")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
