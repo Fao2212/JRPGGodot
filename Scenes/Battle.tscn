@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://b5fij0yeb34h5"]
+
+[ext_resource type="PackedScene" uid="uid://cmcsvkfqjhs5y" path="res://Scenes/Character.tscn" id="1_vr6xi"]
+[ext_resource type="SpriteFrames" uid="uid://cuyr8lmslnt5y" path="res://Sprites/MasterSpriteFrames.tres" id="2_2h7oj"]
+[ext_resource type="Script" uid="uid://dg46vmggbsigi" path="res://Scripts/Menu.cs" id="3_1samx"]
+[ext_resource type="Texture2D" uid="uid://df1sjth35w6ir" path="res://icon.png" id="3_2h7oj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2f0ge"]
+font_size = 26
+font_color = Color(0, 0, 0, 1)
+
+[node name="BattleMain" type="Node" unique_id=1625667524]
+
+[node name="World" type="Node2D" parent="." unique_id=64240827]
+
+[node name="Elve" parent="World" unique_id=1797400425 instance=ExtResource("1_vr6xi")]
+position = Vector2(-383, -31.999998)
+scale = Vector2(3.9210672, 3.3227646)
+flip_h = true
+script = null
+
+[node name="Master" parent="World" unique_id=830171459 instance=ExtResource("1_vr6xi")]
+position = Vector2(392.00003, -185.99998)
+scale = Vector2(4.360004, 3.64)
+sprite_frames = ExtResource("2_2h7oj")
+script = null
+
+[node name="Camera2D" type="Camera2D" parent="World" unique_id=402312091]
+
+[node name="GUI" type="Control" parent="." unique_id=492458966]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -576.0
+offset_top = -326.0
+offset_right = 577.0
+offset_bottom = 325.0
+scale = Vector2(1.0087346, 1)
+
+[node name="Container" type="Control" parent="GUI" unique_id=1716722142]
+layout_mode = 1
+anchor_left = 0.049000002
+anchor_top = 0.75900006
+anchor_right = 0.961
+anchor_bottom = 0.952
+offset_left = -11.497002
+offset_top = -14.109039
+offset_right = 5.966919
+offset_bottom = 3.2479858
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Container" unique_id=1838856717]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99700004
+anchor_bottom = 0.97900003
+offset_right = 0.20690918
+offset_bottom = 0.0029907227
+script = ExtResource("3_1samx")
+
+[node name="Attack" type="HBoxContainer" parent="GUI/Container/ColorRect" unique_id=139181876]
+layout_mode = 0
+offset_left = 147.32016
+offset_top = 40.0
+offset_right = 236.32016
+offset_bottom = 76.0
+
+[node name="Selector" type="TextureRect" parent="GUI/Container/ColorRect/Attack" unique_id=1412518300]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_2h7oj")
+
+[node name="VSeparator" type="VSeparator" parent="GUI/Container/ColorRect/Attack" unique_id=1965105705]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Container/ColorRect/Attack" unique_id=383539206]
+z_index = 1
+layout_mode = 2
+text = "Attack"
+label_settings = SubResource("LabelSettings_2f0ge")
+vertical_alignment = 1
+
+[node name="Scape" type="HBoxContainer" parent="GUI/Container/ColorRect" unique_id=932595837]
+layout_mode = 0
+offset_left = 778.80444
+offset_top = 40.0
+offset_right = 859.80444
+offset_bottom = 76.0
+
+[node name="Selector" type="TextureRect" parent="GUI/Container/ColorRect/Scape" unique_id=1038641939]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_2h7oj")
+
+[node name="VSeparator" type="VSeparator" parent="GUI/Container/ColorRect/Scape" unique_id=921635759]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Container/ColorRect/Scape" unique_id=1372717911]
+z_index = 1
+layout_mode = 2
+text = "Scape"
+label_settings = SubResource("LabelSettings_2f0ge")

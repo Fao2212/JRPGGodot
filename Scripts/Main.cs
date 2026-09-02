@@ -1,29 +1,31 @@
 using Godot;
-using System;
-using System.Threading.Tasks;
 
 public partial class Main : Node
 {
-	[Export]
-	PackedScene battleScene;
 	Node mainScene;
+	PackedScene battleScene;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		GetNode("World/Player").Connect("BattleStarted", Callable.From(OnBattleFound));
+		GetNode("World/Player").Connect("BattleStarted", Callable.From(OnBattleStarted));
 		mainScene = GetNode("World");
+		battleScene = GD.Load<PackedScene>("res://Scenes/Battle.tscn");
 	}
 
-	public async Task OnBattleFound()
+	public void OnBattleStarted()
 	{
-		GD.Print("Battle Started");
 		Node scene = battleScene.Instantiate();
-		AddChild(scene);
-		RemoveChild(mainScene);
-		await ToSignal(GetTree().CreateTimer(5f), "timeout");
-		GD.Print("DONE");
-		AddChild(mainScene);
-		RemoveChild(scene);
+		CallDeferred("add_child", scene);
+		//FOrced this need to be fiixed
+		scene.GetNode("GUI/Container/ColorRect").Connect("BattleEnded", Callable.From(OnBattleEnded));
+		CallDeferred("remove_child", mainScene);
+	}
+
+	public void OnBattleEnded()
+	{
+		Node scene = GetTree().Root.GetNode("Main/BattleMain");
+		CallDeferred("add_child", mainScene);
+		CallDeferred("remove_child", scene);
 	}
 
 }

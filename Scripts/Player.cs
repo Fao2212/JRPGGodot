@@ -6,6 +6,7 @@ public partial class Player : Character
 
 	[Signal]
 	delegate void BattleStartedEventHandler();
+	bool canFight = true;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -26,7 +27,7 @@ public partial class Player : Character
 		{
 			Position += Vector2.Right * _speed * (float)delta;
 		}
-		if (Input.IsKeyLabelPressed(Key.A)) 
+		if (Input.IsKeyLabelPressed(Key.A))
 		{
 			Position += Vector2.Left * _speed * (float)delta;
 		}
@@ -34,9 +35,13 @@ public partial class Player : Character
 
 
 
-		public void _on_area_2d_area_entered(Area2D area)
+	public void _on_area_2d_area_entered(Area2D area)
 	{
-		EmitSignal("BattleStarted");
+		if (canFight)
+		{
+			canFight = false;
+			EmitSignal("BattleStarted");
+		}
 	}
 
 }
