@@ -8,7 +8,7 @@
 
 [node name="Main" type="Node" unique_id=751072021]
 script = ExtResource("1_06h2u")
-BattleScene = ExtResource("2_f5nyw")
+battleScene = ExtResource("2_f5nyw")
 
 [node name="World" type="Node2D" parent="." unique_id=138512029]
 

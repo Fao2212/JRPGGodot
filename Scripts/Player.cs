@@ -36,7 +36,6 @@ public partial class Player : Character
 
 		public void _on_area_2d_area_entered(Area2D area)
 	{
-		GD.Print(area);
 		EmitSignal("BattleStarted");
 	}
 
