@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b5fij0yeb34h5"]
 
+[ext_resource type="Script" uid="uid://dgjmbi4ardfkn" path="res://Scripts/Battle.cs" id="1_p46lj"]
 [ext_resource type="PackedScene" uid="uid://cmcsvkfqjhs5y" path="res://Scenes/Character.tscn" id="1_vr6xi"]
 [ext_resource type="SpriteFrames" uid="uid://cuyr8lmslnt5y" path="res://Sprites/MasterSpriteFrames.tres" id="2_2h7oj"]
 [ext_resource type="Script" uid="uid://dg46vmggbsigi" path="res://Scripts/Menu.cs" id="3_1samx"]
@@ -9,7 +10,19 @@
 font_size = 26
 font_color = Color(0, 0, 0, 1)
 
-[node name="BattleMain" type="Node" unique_id=1625667524]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f0ge"]
+bg_color = Color(0.15686275, 0.7137255, 0.10980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p46lj"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="BattleMain" type="Node" unique_id=1625667524 node_paths=PackedStringArray("Player", "Enemy", "PlayerProgressBar", "EnemyProgressBar", "menu")]
+script = ExtResource("1_p46lj")
+Player = NodePath("World/Elve")
+Enemy = NodePath("World/Master")
+PlayerProgressBar = NodePath("GUI/PlayerHealthBar/ProgressBar")
+EnemyProgressBar = NodePath("GUI/EnemyHealthBar/ProgressBar")
+menu = NodePath("GUI/Menu/ColorRect")
 
 [node name="World" type="Node2D" parent="." unique_id=64240827]
 
@@ -17,26 +30,30 @@ font_color = Color(0, 0, 0, 1)
 position = Vector2(-383, -31.999998)
 scale = Vector2(3.9210672, 3.3227646)
 flip_h = true
-script = null
+MaxHP = 100
+Damage = 15
 
 [node name="Master" parent="World" unique_id=830171459 instance=ExtResource("1_vr6xi")]
-position = Vector2(392.00003, -185.99998)
+position = Vector2(392.00003, -110)
 scale = Vector2(4.360004, 3.64)
 sprite_frames = ExtResource("2_2h7oj")
-script = null
+MaxHP = 100
+Damage = 15
 
 [node name="Camera2D" type="Camera2D" parent="World" unique_id=402312091]
 
 [node name="GUI" type="Control" parent="." unique_id=492458966]
 layout_mode = 3
-anchors_preset = 0
-offset_left = -576.0
-offset_top = -326.0
-offset_right = 577.0
-offset_bottom = 325.0
+anchor_left = -0.5
+anchor_top = -0.503
+anchor_right = 0.51000005
+anchor_bottom = 0.50200003
+offset_top = -0.055999756
+offset_right = -10.520081
+offset_bottom = -0.2960205
 scale = Vector2(1.0087346, 1)
 
-[node name="Container" type="Control" parent="GUI" unique_id=1716722142]
+[node name="Menu" type="Control" parent="GUI" unique_id=1716722142]
 layout_mode = 1
 anchor_left = 0.049000002
 anchor_top = 0.75900006
@@ -47,7 +64,7 @@ offset_top = -14.109039
 offset_right = 5.966919
 offset_bottom = 3.2479858
 
-[node name="ColorRect" type="ColorRect" parent="GUI/Container" unique_id=1838856717]
+[node name="ColorRect" type="ColorRect" parent="GUI/Menu" unique_id=1838856717]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.99700004
@@ -56,45 +73,100 @@ offset_right = 0.20690918
 offset_bottom = 0.0029907227
 script = ExtResource("3_1samx")
 
-[node name="Attack" type="HBoxContainer" parent="GUI/Container/ColorRect" unique_id=139181876]
+[node name="Attack" type="HBoxContainer" parent="GUI/Menu/ColorRect" unique_id=139181876]
 layout_mode = 0
 offset_left = 147.32016
 offset_top = 40.0
 offset_right = 236.32016
 offset_bottom = 76.0
 
-[node name="Selector" type="TextureRect" parent="GUI/Container/ColorRect/Attack" unique_id=1412518300]
+[node name="Selector" type="TextureRect" parent="GUI/Menu/ColorRect/Attack" unique_id=1412518300]
 visible = false
 layout_mode = 2
 texture = ExtResource("3_2h7oj")
 
-[node name="VSeparator" type="VSeparator" parent="GUI/Container/ColorRect/Attack" unique_id=1965105705]
+[node name="VSeparator" type="VSeparator" parent="GUI/Menu/ColorRect/Attack" unique_id=1965105705]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GUI/Container/ColorRect/Attack" unique_id=383539206]
+[node name="Label" type="Label" parent="GUI/Menu/ColorRect/Attack" unique_id=383539206]
 z_index = 1
 layout_mode = 2
 text = "Attack"
 label_settings = SubResource("LabelSettings_2f0ge")
 vertical_alignment = 1
 
-[node name="Scape" type="HBoxContainer" parent="GUI/Container/ColorRect" unique_id=932595837]
-layout_mode = 0
-offset_left = 778.80444
-offset_top = 40.0
-offset_right = 859.80444
-offset_bottom = 76.0
+[node name="Scape" type="HBoxContainer" parent="GUI/Menu/ColorRect" unique_id=932595837]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.731
+anchor_top = 0.286
+anchor_right = 0.80700004
+anchor_bottom = 0.54300004
+offset_left = -0.44158936
+offset_top = -0.040000916
+offset_right = -0.45758057
+offset_bottom = -0.020004272
 
-[node name="Selector" type="TextureRect" parent="GUI/Container/ColorRect/Scape" unique_id=1038641939]
+[node name="Selector" type="TextureRect" parent="GUI/Menu/ColorRect/Scape" unique_id=1038641939]
 visible = false
 layout_mode = 2
 texture = ExtResource("3_2h7oj")
 
-[node name="VSeparator" type="VSeparator" parent="GUI/Container/ColorRect/Scape" unique_id=921635759]
+[node name="VSeparator" type="VSeparator" parent="GUI/Menu/ColorRect/Scape" unique_id=921635759]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GUI/Container/ColorRect/Scape" unique_id=1372717911]
+[node name="Label" type="Label" parent="GUI/Menu/ColorRect/Scape" unique_id=1372717911]
 z_index = 1
 layout_mode = 2
 text = "Scape"
 label_settings = SubResource("LabelSettings_2f0ge")
+
+[node name="PlayerHealthBar" type="Control" parent="GUI" unique_id=560259099]
+layout_mode = 1
+anchor_left = 0.060000002
+anchor_top = 0.15
+anchor_right = 0.27
+anchor_bottom = 0.22200002
+offset_right = -201.48653
+offset_bottom = -1.5258789e-05
+scale = Vector2(5.9567037, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="GUI/PlayerHealthBar" unique_id=1752560318]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.4619141
+offset_top = -2.0
+offset_right = 1.2732582
+offset_bottom = 6.4780045
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_2f0ge")
+value = 100.0
+show_percentage = false
+
+[node name="EnemyHealthBar" type="Control" parent="GUI" unique_id=1389064965]
+layout_mode = 1
+anchor_left = 0.060000002
+anchor_top = 0.15
+anchor_right = 0.27
+anchor_bottom = 0.22200002
+offset_left = 761.56384
+offset_top = -88.649994
+offset_right = 560.07733
+offset_bottom = -88.65001
+scale = Vector2(5.9567037, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="GUI/EnemyHealthBar" unique_id=1462340000]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.4619141
+offset_top = -2.0
+offset_right = 1.2732582
+offset_bottom = 6.4780045
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_p46lj")
+value = 100.0
+show_percentage = false

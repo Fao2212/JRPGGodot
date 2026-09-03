@@ -10,6 +10,7 @@ size = Vector2(57, 110)
 sprite_frames = ExtResource("1_7ig0a")
 animation = &"Iddle"
 script = ExtResource("2_7ig0a")
+HP = 100
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2011555587]
 

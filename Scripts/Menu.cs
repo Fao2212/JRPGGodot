@@ -5,9 +5,13 @@ public partial class Menu : Node
 {
 
 	[Signal]
-	delegate void BattleEndedEventHandler();
+	delegate void BattleEndedEventHandler();	
+	[Signal]
+	delegate void PlayerAttackedEventHandler();
+
 	//TODO IMPROVE THIS IM SLEEPY
 	bool canEnd = true;
+	bool canAttack = true;
 
 	int currentSelection = 0;
 
@@ -51,6 +55,15 @@ public partial class Menu : Node
 		}
 		if (Input.IsKeyPressed(Key.Space))
 		{
+			if (currentSelection == 0)
+			{
+				if (canAttack)
+				{
+					canAttack = false;
+					EmitSignal("PlayerAttacked");
+				}
+				
+			}
 			//IMprove this to avoiod if hell
 			if (currentSelection == 1)
 			{

@@ -17,19 +17,19 @@ public partial class Player : Character
 	{
 		if (Input.IsKeyLabelPressed(Key.W))
 		{
-			Position += Vector2.Up * _speed * (float)delta;
+			Position += Vector2.Up * Speed * (float)delta;
 		}
 		if (Input.IsKeyLabelPressed(Key.S))
 		{
-			Position += Vector2.Down * _speed * (float)delta;
+			Position += Vector2.Down * Speed * (float)delta;
 		}
 		if (Input.IsKeyLabelPressed(Key.D))
 		{
-			Position += Vector2.Right * _speed * (float)delta;
+			Position += Vector2.Right * Speed * (float)delta;
 		}
 		if (Input.IsKeyLabelPressed(Key.A))
 		{
-			Position += Vector2.Left * _speed * (float)delta;
+			Position += Vector2.Left * Speed * (float)delta;
 		}
 	}
 

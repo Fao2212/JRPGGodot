@@ -17,7 +17,7 @@ public partial class Main : Node
 		Node scene = battleScene.Instantiate();
 		CallDeferred("add_child", scene);
 		//FOrced this need to be fiixed
-		scene.GetNode("GUI/Container/ColorRect").Connect("BattleEnded", Callable.From(OnBattleEnded));
+		scene.GetNode("GUI/Menu/ColorRect").Connect("BattleEnded", Callable.From(OnBattleEnded));
 		CallDeferred("remove_child", mainScene);
 	}
 
