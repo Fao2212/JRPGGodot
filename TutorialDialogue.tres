@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://cl54scl7slaw2"]
+
+[ext_resource type="Script" uid="uid://dlcnm6uijiu57" path="res://Scripts/DialogueResource.cs" id="1_6tmb5"]
+
+[resource]
+script = ExtResource("1_6tmb5")
+dialogues = PackedStringArray("Hello Player, this is the tutorial", "I will show you how to battle", "Prepare for this")
+metadata/_custom_type_script = "uid://dlcnm6uijiu57"

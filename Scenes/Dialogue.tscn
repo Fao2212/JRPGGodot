@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://gtewhboj8p0n"]
+
+[ext_resource type="Script" uid="uid://crftlflc55rau" path="res://Scripts/Dialogue.cs" id="1_34wqy"]
+[ext_resource type="Resource" uid="uid://cl54scl7slaw2" path="res://TutorialDialogue.tres" id="2_2842h"]
+
+[node name="Dialogue" type="Control" unique_id=1520718433]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_34wqy")
+dialogueResource = ExtResource("2_2842h")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1152796056]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99700004
+anchor_bottom = 0.97900003
+offset_left = 44.951
+offset_top = 477.723
+offset_right = -23.544067
+offset_bottom = -21.392029
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Background" unique_id=608411115]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.004
+anchor_top = 0.039
+anchor_right = 0.99700004
+anchor_bottom = 1.0
+offset_left = -0.27120018
+offset_top = 0.00121212
+offset_right = 0.2401123
+offset_bottom = -5.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "This is sample text."

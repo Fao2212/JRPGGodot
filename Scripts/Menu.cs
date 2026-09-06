@@ -11,7 +11,7 @@ public partial class Menu : Node
 
 	//TODO IMPROVE THIS IM SLEEPY
 	bool canEnd = true;
-	bool canAttack = true;
+	public bool CanAttack {get;set;} = true;
 
 	int currentSelection = 0;
 
@@ -40,7 +40,7 @@ public partial class Menu : Node
 		ShowSelected();
 	}
 
-	// Control de repetition. Inso? Idempotency?
+	// Control de repetition.Idempotency?
 	public override void _Process(double delta)
 	{
 		if (Input.IsKeyPressed(Key.A))
@@ -57,10 +57,11 @@ public partial class Menu : Node
 		{
 			if (currentSelection == 0)
 			{
-				if (canAttack)
+				if (CanAttack)
 				{
-					canAttack = false;
+					CanAttack = false;
 					EmitSignal("PlayerAttacked");
+					GD.Print("Attacked");
 				}
 				
 			}

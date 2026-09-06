@@ -16,23 +16,28 @@ public partial class Battle : Node
 	[Export]
 	private Menu menu;
 	// End Battle
+	Timer timer = new Timer();
 
 	public override void _Ready()
 	{
 		EnemyProgressBar.MaxValue = Enemy.CurrentHP;
 		PlayerProgressBar.MaxValue = Player.CurrentHP;
 		menu.Connect("PlayerAttacked",Callable.From(OnPlayerAttacked));
+		timer.WaitTime = 2f;
+		timer.Timeout += NextTurn;
+		timer.OneShot = true;
+		AddChild(timer);
 	}
 
-	public async Task NextTurn()
+	public void NextTurn()
 	{
-		await ToSignal(GetTree().CreateTimer(2.0f),SceneTreeTimer.SignalName.Timeout);
 		Enemy.Attack(Player);
 		PlayerProgressBar.Value = Player.CurrentHP;
 		PlayerTurn = true;
+		menu.CanAttack = true;
 	}
 
-	public async Task OnPlayerAttacked()
+	public void OnPlayerAttacked()
 	{
 		if (PlayerTurn)
 		{
@@ -44,8 +49,7 @@ public partial class Battle : Node
 		{
 			GD.PrintErr("Not player turn");
 		}
-		await NextTurn();
+		timer.Start();
 	}
-
 
 }
