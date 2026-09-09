@@ -1,17 +1,20 @@
 using Godot;
-using System;
 
 public partial class Player : Character
 {
-
 	[Signal]
-	delegate void BattleStartedEventHandler();
-	bool canFight = true;
+	delegate void InteractedEventHandler();
+	Timer interactTimer = new();
+	bool freeInteract = true;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    public override void _Ready()
+    {
+        base._Ready();
+		interactTimer.WaitTime = 1f;
+		interactTimer.Autostart = false;
+		interactTimer.Timeout += ()=>{freeInteract = true;};
+		AddChild(interactTimer);
+    }
 
 	public override void _Process(double delta)
 	{
@@ -31,17 +34,16 @@ public partial class Player : Character
 		{
 			Position += Vector2.Left * Speed * (float)delta;
 		}
-	}
-
-
-
-	public void _on_area_2d_area_entered(Area2D area)
-	{
-		if (canFight)
+		if(Input.IsKeyPressed(Key.Space))
 		{
-			canFight = false;
-			EmitSignal("BattleStarted");
+			if(freeInteract)
+			{
+				freeInteract = false;
+				interactTimer.Start();
+				EmitSignal("Interacted");
+			}
 		}
 	}
+
 
 }

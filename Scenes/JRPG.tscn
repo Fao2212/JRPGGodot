@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://cwiq5f5jndsta" path="res://Scripts/Main.cs" id="1_nevon"]
 [ext_resource type="PackedScene" uid="uid://cmcsvkfqjhs5y" path="res://Scenes/Character.tscn" id="3_pk43w"]
 [ext_resource type="Script" uid="uid://yjo5qhv8lgau" path="res://Scripts/Player.cs" id="4_2nrqg"]
+[ext_resource type="Script" uid="uid://b18imyeb7q21d" path="res://Scripts/NPC.cs" id="4_pk43w"]
 [ext_resource type="SpriteFrames" uid="uid://cuyr8lmslnt5y" path="res://Sprites/MasterSpriteFrames.tres" id="5_8njww"]
+[ext_resource type="Resource" uid="uid://cl54scl7slaw2" path="res://TutorialDialogue.tres" id="5_gra1n"]
+[ext_resource type="Script" uid="uid://cvrgoavpbha4n" path="res://Scripts/DialogueManager.cs" id="5_nevon"]
 
 [node name="Main" type="Node" unique_id=751072021]
 script = ExtResource("1_nevon")
@@ -12,17 +15,32 @@ script = ExtResource("1_nevon")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="World" unique_id=934309319]
 
+[node name="NPCs" type="Node" parent="World" unique_id=509827282]
+
+[node name="Master" parent="World/NPCs" unique_id=1602898904 node_paths=PackedStringArray("DialogueManager", "player") instance=ExtResource("3_pk43w")]
+position = Vector2(-208, 0)
+sprite_frames = ExtResource("5_8njww")
+script = ExtResource("4_pk43w")
+dialogues = Array[Object]([ExtResource("5_gra1n")])
+DialogueManager = NodePath("../../../DialogueManager")
+player = NodePath("../../Player")
+
 [node name="Player" parent="World" unique_id=1797400425 instance=ExtResource("3_pk43w")]
 script = ExtResource("4_2nrqg")
 
 [node name="Camera2D" type="Camera2D" parent="World/Player" unique_id=1274289487]
 
-[node name="Master" parent="World" unique_id=1602898904 instance=ExtResource("3_pk43w")]
-position = Vector2(-208, 0)
-sprite_frames = ExtResource("5_8njww")
-
 [node name="GUI" type="Control" parent="." unique_id=1200970679]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_left = -0.49800003
+anchor_top = -0.50200003
+anchor_right = 0.50100005
+offset_left = -0.30395508
+offset_top = 0.2960205
+offset_right = -0.15203857
+offset_bottom = 327.0
+
+[node name="DialogueManager" type="Node" parent="." unique_id=1003075814]
+script = ExtResource("5_nevon")
+
+[node name="EventManager" type="Node" parent="." unique_id=183222161]

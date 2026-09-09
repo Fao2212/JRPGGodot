@@ -5,7 +5,7 @@ using Godot;
 public partial class DialogueResource : Resource
 {
 	[Export]
-	string[] dialogues;
+	public string[] dialogues;
 
 	public string GetDialogue(int index)
 	{
@@ -15,7 +15,7 @@ public partial class DialogueResource : Resource
 		}
 		else
 		{
-			throw new Exception("Not enough dialogues for the entered index");
+			throw new Exception(String.Format("Not enough dialogues for the entered index {0}",index));
 		}
 	}
 }

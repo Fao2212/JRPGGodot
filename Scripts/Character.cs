@@ -2,7 +2,6 @@ using Godot;
 
 public partial class Character : Node2D
 {
-
 	[Export]
 	protected float Speed {get;set;} = 200;
 	[Export]
@@ -17,7 +16,7 @@ public partial class Character : Node2D
 		CurrentHP = MaxHP;
 	}
 
-	public void TakeDamage(int damage)
+    public void TakeDamage(int damage)
 	{
 		CurrentHP -= damage;
 	}

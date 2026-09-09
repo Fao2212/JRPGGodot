@@ -4,15 +4,15 @@ public partial class Main : Node
 {
 	Node mainScene;
 	PackedScene battleScene;
-	// Called when the node enters the scene tree for the first time.
+	DialogueManager dialogueManager;
+	
 	public override void _Ready()
 	{
-		GetNode("World/Player").Connect("BattleStarted", Callable.From(OnBattleStarted));
 		mainScene = GetNode("World");
 		battleScene = GD.Load<PackedScene>("res://Scenes/Battle.tscn");
 	}
 
-	public void OnBattleStarted()
+    public void OnBattleStarted()
 	{
 		Node scene = battleScene.Instantiate();
 		CallDeferred("add_child", scene);
